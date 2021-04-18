@@ -23,18 +23,19 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 Fragment selectedFragment=null;
-                switch (item.getItemId()){
-                    case R.id.action_category:
-                        selectedFragment=CategoryFragment.newInstance();
-                        break;
-                    case R.id.action_score:
-                        selectedFragment=ScoreFragment.newInstance();
-                        break;
+                if(item.getItemId()==R.id.action_category){
+                    selectedFragment=new CategoryFragment();
+                }else if(item.getItemId()==R.id.action_score){
+                    selectedFragment=new ScoreFragment();
                 }
-                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout,selectedFragment);
-                transaction.commit();
+                if(selectedFragment!=null){
+                    FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout,selectedFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
 
                 return true;
             }

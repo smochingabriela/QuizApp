@@ -9,6 +9,7 @@ public class Category {
         Name = name;
         Image = image;
     }
+    public Category() {}
 
     public String getName() {
         return Name;

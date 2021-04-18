@@ -1,9 +1,7 @@
 package com.example.quizapp;
 
-import android.content.ClipData;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.fragment.app.Fragment;
@@ -13,18 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.Toast;
 
-import com.example.quizapp.Interface.ItemClickListener;
 import com.example.quizapp.Model.Category;
-import com.example.quizapp.ViewHolder.CategoryViewHolder;
 import com.example.quizapp.ViewHolder.myadapter;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class CategoryFragment extends Fragment {
 
@@ -57,7 +49,7 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_category,container,false);
 
-        listCategory=(RecyclerView)view.findViewById(R.id.listCategory);
+       /* listCategory=(RecyclerView)view.findViewById(R.id.listCategory);
         listCategory.setHasFixedSize(true);
         listCategory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -67,10 +59,27 @@ public class CategoryFragment extends Fragment {
 
         adapter=new myadapter(options);
         listCategory.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();*/
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        listCategory = (RecyclerView) view.findViewById(R.id.listCategory);
+        listCategory.setHasFixedSize(true);
+        listCategory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FirebaseRecyclerOptions<Category> options = new FirebaseRecyclerOptions.Builder<Category>()
+                .setQuery(categories, Category.class)
+                .build();
+
+        adapter = new myadapter(options);
+        listCategory.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public void onStart(){

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.quizapp.HomeActivity;
 import com.example.quizapp.Interface.ItemClickListener;
 
 import com.example.quizapp.Model.Category;
@@ -20,6 +21,7 @@ import com.example.quizapp.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 
@@ -33,19 +35,22 @@ public class myadapter extends FirebaseRecyclerAdapter<Category,myadapter.myview
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull Category model) {
+    protected void onBindViewHolder(@NonNull myviewholder holder,final int position, @NonNull Category model) {
         holder.category_name.setText(model.getName());
         Picasso.with(holder.category_image.getContext())
                 .load(model.getImage())
                 .into(holder.category_image);
 
-        /*holder.setItemClickListener(new ItemClickListener(){
+
+
+        holder.setItemClickListener(new ItemClickListener(){
             @Override
             public void onClick(View view,int position,boolean isLongClick){
 
-                Toast.makeText(myadapter.this.getClass(),String.format("%s|%s",myadapter.getRef(position).getKey(),model.getName()),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(myadapter.this.getClass(),"model.getName()",Toast.LENGTH_SHORT).show();
+
             }
-        });*/
+        });
 
     }
 
@@ -57,7 +62,7 @@ public class myadapter extends FirebaseRecyclerAdapter<Category,myadapter.myview
         return new myviewholder(view);
     }
 
-    public class myviewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class myviewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView category_name;
         public ImageView category_image;
