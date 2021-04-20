@@ -22,6 +22,13 @@ import com.squareup.picasso.Picasso;
 import java.util.Collection;
 import java.util.Collections;
 
+public class PlayActivity extends AppCompatActivity{
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_play);
+    }
+/*
 public class PlayActivity extends AppCompatActivity implements View.OnClickListener{
 
     int i=0, score=0, thisQuestion=0,totalQuestion,correctAnswer;
@@ -118,7 +125,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         if(i < totalQuestion){
             thisQuestion++;
-            textTotalQuestion.setText(String.format("%d/ %d",thisQuestion,totalQuestion));
+            textTotalQuestion.setText(String.format("%d/ %d",thisQuestion,totalQuestion));*/
 
             /*if(Common.questionsList.get(i).getIsImageQuestion().equals("true")){
                 Picasso.with(getBaseContext())
@@ -126,6 +133,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                         .into(question_image);
 
             }*/
+/*
             buttonA.setText(Common.questionsList.get(i).getAnswerA());
             buttonB.setText(Common.questionsList.get(i).getAnswerB());
             buttonC.setText(Common.questionsList.get(i).getAnswerC());
@@ -150,5 +158,5 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         totalQuestion=Common.questionsList.size();
         showQuestion(i);
-    }
+    }*/
 }
