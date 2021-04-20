@@ -1,6 +1,7 @@
 package com.example.quizapp.ViewHolder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.quizapp.CategoryFragment;
+import com.example.quizapp.Common.Common;
 import com.example.quizapp.HomeActivity;
 import com.example.quizapp.Interface.ItemClickListener;
 
@@ -36,18 +39,19 @@ public class myadapter extends FirebaseRecyclerAdapter<Category,myadapter.myview
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder,final int position, @NonNull Category model) {
+        //Category key=getItem(position);
         holder.category_name.setText(model.getName());
         Picasso.with(holder.category_image.getContext())
                 .load(model.getImage())
                 .into(holder.category_image);
 
-
+        String msg=getRef(position).getKey();
 
         holder.setItemClickListener(new ItemClickListener(){
             @Override
             public void onClick(View view,int position,boolean isLongClick){
 
-                //Toast.makeText(myadapter.this.getClass(),"model.getName()",Toast.LENGTH_SHORT).show();
+                Toast.makeText(myadapter.this,String.format("%s",msg),model.getName(),Toast.LENGTH_SHORT).show();
 
             }
         });
