@@ -17,9 +17,6 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
 
     private ItemClickListener itemClickListener;
 
-    public void setItemClickListener(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
 
     public CategoryViewHolder(View itemView) {
         super(itemView);
@@ -28,6 +25,10 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
 
         itemView.setOnClickListener(this);
 
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @Override

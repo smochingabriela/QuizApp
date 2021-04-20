@@ -36,6 +36,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent=new Intent(StartActivity.this, HomeActivity.class);
                 startActivity(intent);
+                finish();
 
 
             }

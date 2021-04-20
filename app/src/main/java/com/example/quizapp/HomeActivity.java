@@ -43,15 +43,17 @@ public class HomeActivity extends AppCompatActivity {
                     Fragment selectedFragment=null;
                     if(item.getItemId()==R.id.action_category){
                         selectedFragment=new CategoryFragment();
-                    }else{
+                    }else if(item.getItemId()==R.id.action_score){
                         selectedFragment=new ScoreFragment();
                     }
 
-                    FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout,selectedFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    if(selectedFragment!=null) {
 
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
 
                     return true;
                 }
